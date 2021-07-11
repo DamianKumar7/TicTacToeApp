@@ -2,11 +2,11 @@ package com.company;
 
 public class Board {
     char[][] board;
-    void resetBoard() {
-        board = new char[3][3];
+    void resetBoard(int boardSize) {
+        board = new char[boardSize][boardSize];
         char boardFiller = '1';
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int row = 0; row < 3; row++) {
+            for (int column = 0; column < 3; column++) {
                 board[i][j] = boardFiller++;
             }
         }
@@ -23,11 +23,11 @@ public class Board {
         return false;
     }
 
-    public void updateBoard(char currentPosition, Player currentPlayer) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (board[i][j] == currentPosition) {
-                    board[i][j] = currentPlayer.playerPiece;
+    public void updateBoard(char currentPosition, char currentPiece) {
+        for (int row = 0; row < 3; row++) {
+            for (int column = 0; column < 3; column++) {
+                if (board[row][column] == currentPosition) {
+                    board[row][column] = currentPiece;
                 }
             }
         }
@@ -45,9 +45,9 @@ public class Board {
     }
 
     private boolean checkMovesLeft() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (board[i][j] != 'X' || board[i][j] != 'O') return false;
+        for (int row = 0; row < 3; row++) {
+            for (int column = 0; column < 3; column++) {
+                if (board[row][column] != 'X' || board[row][column] != 'O') return false;
             }
         }
         return true;

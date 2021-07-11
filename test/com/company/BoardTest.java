@@ -28,7 +28,7 @@ class BoardTest {
         Board currentBoard = new Board();
         currentBoard.resetBoard();
         currentBoard.board[0][1] = currentBoard.board[0][0];
-        int checkForGameOver = currentBoard.getGameState();
+        GameState checkForGameOver = currentBoard.getGameState();
         assertEquals(0,checkForGameOver);
     }
     @Test

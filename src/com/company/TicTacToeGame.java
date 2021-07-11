@@ -9,15 +9,20 @@ public class TicTacToeGame {
     Player player1;
     Player player2;
     Scanner sc;
+    TicTacToeGame newGame
 
-    TicTacToeGame() {
+
+    TicTacToeGame(int boardSize) {
         sc = new Scanner(System.in);
         board = new Board();
+        newGame = new TicTacToeGame(boardSize);
+        board.resetBoard(boardSize);
+        newGame.playGame();
     }
 
     public static void main(String[] args) {
-        TicTacToeGame newGame = new TicTacToeGame();
-        newGame.playGame();
+
+
     }
 
     public void displayCurrentResult(GameState gameOverSignal, int currentPlayerId) {
@@ -33,7 +38,7 @@ public class TicTacToeGame {
 
         //Instructions newGameInstructions = new Instructions();
         //newGameInstructions.displayGameInstructions();
-        board.resetBoard();
+
 
         player1 = new Player('X');
         player2 = new Player('O');
@@ -55,10 +60,7 @@ public class TicTacToeGame {
     }
 
     public int switchPlayerControl(int currentPlayerId) {
-        if (currentPlayerId == 1) {
-            return 2;
-        }
-        return 1;
+        return currentPlayerId == 1?2:1;
 
     }
 
@@ -67,12 +69,11 @@ public class TicTacToeGame {
         if (currentPlayerId == 1) {
             // System.out.println("Player1 : ");
             currentPosition = player1.getPositionAsInputFromConsole();
-
             while (!board.validatePosition(currentPosition)) {
                 // System.out.println("Please Enter A Valid Position:");
                 currentPosition = player1.getPositionAsInputFromConsole();
             }
-            board.updateBoard(currentPosition, player1);
+            board.updateBoard(currentPosition, player1.playerPiece);
 
         } else {
             // System.out.println("Player2 : ");
@@ -81,7 +82,7 @@ public class TicTacToeGame {
                 // System.out.println("Please Enter A Valid Position:");
                 currentPosition = player2.getPositionAsInputFromConsole();
             }
-            board.updateBoard(currentPosition, player2);
+            board.updateBoard(currentPosition, player2.playerPiece);
 
         }
 

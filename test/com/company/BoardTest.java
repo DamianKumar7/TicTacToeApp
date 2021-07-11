@@ -28,7 +28,7 @@ class BoardTest {
         Board currentBoard = new Board();
         currentBoard.resetBoard();
         currentBoard.board[0][1] = currentBoard.board[0][0];
-        int checkForGameOver = currentBoard.checkGameOver();
+        int checkForGameOver = currentBoard.getGameState();
         assertEquals(0,checkForGameOver);
     }
     @Test
@@ -38,7 +38,7 @@ class BoardTest {
         currentBoard.board[0][1] = currentBoard.board[0][0];
         currentBoard.board[0][2] = currentBoard.board[0][1];
 
-        int checkForRowWithSameElements = currentBoard.checkGameOver();
+        int checkForRowWithSameElements = currentBoard.getGameState();
         assertEquals(1,checkForRowWithSameElements);
     }
     @Test
@@ -48,7 +48,7 @@ class BoardTest {
         currentBoard.board[1][0] = currentBoard.board[0][0];
         currentBoard.board[2][0] = currentBoard.board[1][0];
 
-        int checkForColumnWithSameElements = currentBoard.checkGameOver();
+        int checkForColumnWithSameElements = currentBoard.getGameState();
         assertEquals(1,checkForColumnWithSameElements);
     }
     @Test
@@ -57,7 +57,7 @@ class BoardTest {
         currentBoard.resetBoard();
         currentBoard.board[1][1] = currentBoard.board[0][0];
         currentBoard.board[2][2] = currentBoard.board[1][1];
-        boolean checkForDiagonalElements = currentBoard.checkDiagonalHasSameElements();
+        boolean checkForDiagonalElements = currentBoard.diagonalHasSameElements();
         assertTrue(checkForDiagonalElements);
     }
 }
